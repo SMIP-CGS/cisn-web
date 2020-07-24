@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+  <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>ShakeMap - Home</title>
+
+        <link rel="stylesheet" href="./style.css">
+
+
+        <!-- Material Design for Bootstrap fonts and icons -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+
+        <!-- Material Design for Bootstrap CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/css/bootstrap-material-design.min.css" integrity="sha384-R80DC0KVBO4GSTw+wZ5x2zn2pu4POSErBkf8/fSFhPXHxvHJydT0CSgAP2Yo2r4I" crossorigin="anonymous">
+  </head>
+
+ 
+   
+  <body>  
+    
+    <!--
+  ###############################################
+  # Navigation Bar + Banner
+  ###############################################
+   -->
+      
+      
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            
+    <a  class="navbar-brand" href="./index.html"><h3>CISN/<small>CGS</small> ShakeMap</h3></a>
+          
+                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div  class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav ml-auto">
+                           <li class="nav-item active">
+                                  <a class="nav-link" href="./index.html">Home</a>
+                           </li>
+                           <li class="nav-item">
+                                  <a class="nav-link" href="./archive.html">Archive</a>
+                           </li>
+                           <li class="nav-item dropdown">
+                                     <a class="nav-link dropdown-toggle" style="margin-right:47px;" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                       Information
+                                     </a>
+                                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                       <a class="dropdown-item" href="./disclaimer.html">Disclaimer</a>
+                                       <a class="dropdown-item" href="./links.html">Related Links</a>
+                                       <a class="dropdown-item" href="./scientific.html">Scientific Background</a>
+                                 </div>
+                           </li>
+                     </ul>
+                 </div>
+</nav>
+      
+      
+
+
+<!--
+###############################################
+            # CISN Banner
+###############################################--->
+ 
+
+ <div class="container col-md-12" style="background-color:#FFB412;" >
+         <div class="row" style="background-color:#ffb412">
+              <div class="col-md-4" style="width:35.6666%">
+                  <a href="https://www.cisn.org/">
+                      <img src="images/CISN_logo.v1.png" style="max-width:95%" alt="CISN Logo">
+                  </a>
+              </div>
+              <div class="col-md-1"></div>
+              <div class="col-md-6;text-left;" ><br>
+                   <h4 style="color:#ffffff;">California Integrated Seismic Network<br>California's Partner to the Advanced National Seismic System</h4>
+              </div>
+         </div>
+          
+    </div>
+  
+      <br>
+  
+<!--###########################################
+            # Buttons
+###############################################--->
+
+    
+ <button  type="button" class="btn btn-outline-primary go_right1" id="downloadButton"  onclick="open_download()">Download products</button>
+    
+ <button type="button" class="btn btn-outline-primary   go_right1" id="leafletButton" onclick="open_leaflet()" type="button">Leaflet View</button>
+    
+      
+    
+      
+  <!-----#############################################
+            Second Navigation Bar
+   #############################################----->
+     
+     
+      
+            
+  <div class="row   container-fluid d-flex justify-content-center">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="intensity-tab" data-toggle="tab" href="#intensity" role="tab" aria-controls="intensity" aria-expanded="true">Intensity</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="pga-tab" data-toggle="tab" href="#pga" role="tab" aria-controls="pga">PGA</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="pgv-tab" data-toggle="tab" href="#pgv" role="tab" aria-controls="pgv">PGV</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">SA</a>
+                                <div class="dropdown-menu">
+                                        <a class="dropdown-item" id="dropdown1-tab" href="#dropdown1" role="tab" data-toggle="tab" aria-controls="dropdown1">SA 0.3s</a>
+                                        <a class="dropdown-item" id="dropdown2-tab" href="#dropdown2" role="tab" data-toggle="tab" aria-controls="dropdown2">SA 1s</a>
+                                        <a class="dropdown-item" id="dropdown3-tab" href="#dropdown3" role="tab" data-toggle="tab" aria-controls="dropdown3">SA 3s</a>
+                                </div>
+                 </li>
+
+                <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Regression</a>
+                                <div class="dropdown-menu">
+                                        <a class="dropdown-item" id="dropdown4-tab" href="#dropdown4" role="tab" data-toggle="tab" aria-controls="dropdown4">PGA</a>
+                                        <a class="dropdown-item" id="dropdown5-tab" href="#dropdown5" role="tab" data-toggle="tab" aria-controls="dropdown5">PGV</a>
+                                </div>
+                </li>
+    </ul>
+</div>
+      
+      
+      
+<!---#################################################################
+            Images section
+#################################################################---->
+      
+      
+<div>
+       
+             <div class="row col-md-12" >
+                     
+                 <div class="col-md-2"> </div>
+                        
+                 <div class="col-md-8" >
+
+                               <div class="tab-content" id="myTabContent">
+
+                                        <div class="tab-pane fade show active" id="intensity" role="tabpanel" aria-labelledby="intensity-tab">
+                                                <img class="img-fluid" id="imgint" src="ToBeChanged" alt="Intensity">
+                                        </div>
+                                        <div class="tab-pane fade" id="pga" role="tabpanel" aria-labelledby="pga-tab">
+                                                <img class="img-fluid" id="pgaint" src="ToBeChanged" alt="PGA">
+                                        </div>
+                                        <div class="tab-pane fade" id="pgv" role="tabpanel" aria-labelledby="pgv-tab">
+                                                <img  class="img-fluid" id="pgvint" src="ToBeChanged" alt="PGV">
+                                        </div>
+                                        <div class="tab-pane fade" id="dropdown1" role="tabpanel" aria-labelledby="dropdown1-tab">
+                                                <img class="img-fluid" id="imgsa03" src="ToBeChanged" alt="sa03">
+                                        </div>
+                                        <div class="tab-pane fade" id="dropdown2" role="tabpanel" aria-labelledby="dropdown2-tab">
+                                                <img class="img-fluid" id="imgsa1" src="ToBeChanged" alt="sa1">
+                                        </div>
+                                          <div class="tab-pane fade" id="dropdown3" role="tabpanel" aria-labelledby="dropdown3-tab">
+                                                <img class="img-fluid" id="imgsa3" src="ToBeChanged" alt="sa3">
+                                          </div>
+                                          <div class="tab-pane fade" id="dropdown4" role="tabpanel" aria-labelledby="dropdown4-tab">
+                                                <img class="img-fluid" id="imgsa4" src="ToBeChanged" alt="PGA">
+                                          </div>
+                                          <div class="tab-pane fade" id="dropdown5" role="tabpanel" aria-labelledby="dropdown5-tab">
+                                                <img class="img-fluid" id="imgsa5" src="ToBeChanged" alt="PGV">
+                                          </div>
+                             </div>
+                 </div>
+                      <div class="col-md-2"></div>
+                 
+              </div>
+      
+</div>
+    
+   
+     
+<!--###############################################
+                # Footer
+###############################################-->
+
+      <!--
+     <footer class="footer">
+           <div class="container">
+             <span class="text-muted">Place sticky footer content here.</span>
+           </div>
+         </footer> -->
+
+
+
+
+
+     <!-- Bootstrap core JavaScript
+       ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/js/bootstrap-material-design.js" integrity="sha384-3xciOSDAlaXneEmyOo0ME/2grfpqzhhTcM4cE32Ce9+8DW/04AGoTACzQpphYGYe" crossorigin="anonymous"></script>
+    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+
+    <!--  My scripts -->
+    <!-- <script src="./scripts/require.js"></script> -->
+    <script src="./scripts/scriptView.js"></script>
+    <script src="scripts/scriptDownload.js"></script>
+
+</body>
+</html>

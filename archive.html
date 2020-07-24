@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>ShakeMap - Archive</title>
+
+    <link rel="stylesheet" href="./style.css">
+
+
+    <!-- Material Design for Bootstrap fonts and icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+
+    <!-- Material Design for Bootstrap CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/css/bootstrap-material-design.min.css" integrity="sha384-R80DC0KVBO4GSTw+wZ5x2zn2pu4POSErBkf8/fSFhPXHxvHJydT0CSgAP2Yo2r4I" crossorigin="anonymous">
+      
+          
+  </head>
+
+      <!--
+    ###############################################
+    # Header + Navigation bar
+    ###############################################
+     -->
+     <!-- <div style="width: 100%; margin: 0 auto;">
+          <img src="ingv_logo_colore.png"/>
+     </div> -->
+    
+   <body>
+       
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            
+ <a  class="navbar-brand" href="./index.html"><h3>CISN/<small>CGS</small> ShakeMap</h3></a>
+          
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                 <span class="navbar-toggler-icon"></span>
+        </button>
+
+           <div  class="collapse navbar-collapse" id="collapsibleNavbar">
+             <ul class="navbar-nav ml-auto">
+                   <li class="nav-item active">
+                     <a class="nav-link" href="./index.html">Home</a>
+                   </li>
+                   <li class="nav-item">
+                       <a class="nav-link" href="./archive.html">Archive</a>
+                   </li>
+                   <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle" style="margin-right:47px;" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                           Information
+                         </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                               <a class="dropdown-item" href="./disclaimer.html">Disclaimer</a>
+                               <a class="dropdown-item" href="./links.html">Related Links</a>
+                               <a class="dropdown-item" href="./scientific.html">Scientific Background</a>
+                         </div>
+                   </li>
+               </ul>
+           </div>
+</nav>
+      
+
+     <!--
+     ###############################################
+     # Banner
+     ###############################################
+      -->
+
+     <!-- <div style="width: 100%;">
+           <img src="banner_lista_terremoti.jpg" style='height: 100%; width: 100%; object-fit: contain'/>
+      </div>-->
+<div class="container col-md-12" style="background-color:#FFB412;" >
+    
+             <div class="row" style="background-color:#ffb412">
+                  <div class="col-md-4" style="width:35.6666%">
+                      <a href="https://www.cisn.org/">
+                          <img src="images/CISN_logo.v1.png" style="max-width:95%" alt="CISN Logo">
+                      </a>
+                  </div>
+                  <div class="col-md-1"></div>
+                  <div class="col-md-6;text-left;" ><br>
+                       <h4 style="color:#ffffff;">California Integrated Seismic Network<br>California's Partner to the Advanced National Seismic System</h4>
+                  </div>
+             </div>
+          
+</div>
+       <!--
+       ####################################################
+       # Buttons , Forms
+       ####################################################-->
+      <div class="tab_menu">
+
+<br>
+          <h3><b>Events list</b> </h3>
+
+      <button type="button" class="btn btn-outline-primary btn_active" id="leafletButton"  onclick="determine_viewer(2)">Leaflet View</button>
+      <button type="button" class="btn btn-outline-primary" id="staticButton" onclick="determine_viewer(1)">Static View</button>
+             
+
+<div class=" row criteria_container col-md-12">
+        <div class="col-md-3"></div>
+                  <div class="col-md-2" style="margin-right:-40px;">  
+                       <small class="input_text">Select year</small>
+                       <select class="custom-select" id="selectYear" onchange="listEvents()"></select>
+                  </div>
+                  <div class="col-md-3" style="margin-right:-20px;">
+                       <small class="input_text">Magnitude range</small>
+                       <input style="width:73px;" type="text" class="mag_input" id="min_mag" placeholder="Minimum">
+                       <small class=" input_text">-</small>
+                       <input style="width:73px;" type="text" class="mag_input" id="max_mag" placeholder="Maximum">
+                  </div>
+
+                  <div class="col-md-1">
+                      <button type="button" class="btn btn-dark btn-raised" onclick="listEvents()">Sort</button>
+                  </div>
+      <div class="col-md-3"></div>       
+</div>
+              
+          
+      <!--##########################################################
+          # Table
+          ###########################################################-->
+      
+      <br/>
+      <br/>
+
+      <div id="event_table" class="table-responsive archive_table"> </div>
+
+
+      </div>
+
+
+      <!--
+      ###############################################
+      # Footer
+      ###############################################
+       -->
+
+     <!-- <footer class="footer">
+           <div class="container">
+             <span class="text-muted">Place sticky footer content here.</span>
+           </div>
+      </footer> -->
+
+
+     <!-- Bootstrap core JavaScript
+       ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/js/bootstrap-material-design.js"></script>
+
+
+    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+
+<!--  My scripts -->
+<script src="./events.js"></script>
+<script src="./scripts/scriptArchive.js"></script>
+
+
+</body>
+</html>
