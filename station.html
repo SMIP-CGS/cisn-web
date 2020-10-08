@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+              
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        
+
+            <link rel="stylesheet" href="./style.css">
+
+                       <!-- Material Design for Bootstrap fonts and icons -->
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+
+            <!-- Material Design for Bootstrap CSS -->
+            <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/css/bootstrap-material-design.min.css" integrity="sha384-R80DC0KVBO4GSTw+wZ5x2zn2pu4POSErBkf8/fSFhPXHxvHJydT0CSgAP2Yo2r4I" crossorigin="anonymous">
+
+       
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      
+     
+        
+     </head>
+    
+   
+    <body bgcolor="white">
+        
+<script>
+          
+              function getURLParameter (name) {
+              return (
+                decodeURIComponent(
+                  (new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(
+                    location.search
+                  ) || [null, ''])[1].replace(/\+/g, '%20')
+                ) || null
+              );
+            }  ;    
+    
+          var eventid = getURLParameter('eventid');
+          $.getJSON('data/' + eventid + '/stationlist.json', function(json)
+{    
+              var station = json.features;
+              var i = 0
+
+            document.writeln("<h1>Seismic Stations</h1>");
+            
+           
+      
+            for(i = 0;i<station.length;i++)
+ {
+            			
+            document.writeln("<table>");
+     
+     
+      document.writeln("<tr><td><b>"+ station[i].id+"<b></td><td style=\"padding:0px;\">&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp" +station[i].properties.name+"</td></tr>"+"<br/>" );
+            document.writeln("<tr><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td></tr>"+"<br/>");
+     
+     
+      document.writeln("</table>"); 
+     
+     document.writeln("<table>");  
+     
+            var x = station[i].geometry.coordinates;
+              
+            var Long = x[0];
+            var Lat = x[1];
+
+
+            document.writeln("<tr><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td><b>Lat:&nbsp&nbsp;  </b></td><td >"+Lat+"</td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td><b>Long:&nbsp&nbsp; </b></td><td>"+Long+"</td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td><b>Source:&nbsp&nbsp; </b></td><td>"+station[i].properties.source+"</td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td><b>Intensity:&nbsp&nbsp; </b></td><td>"+station[i].properties.intensity+"</td></tr>");
+                      
+            document.writeln("<tr><td>&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td><b>Distance (km):</b></td><td>" + station[i].properties.distance +"</td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td><b>PGA (%g):&nbsp&nbsp; </b></td><td>"+station[i].properties.pga+"</td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td><b>PGV (cm/s) &nbsp&nbsp; </b></td><td>"+station[i].properties.pgv+"</td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td><b>VS30 (m/s):&nbsp&nbsp; </b></td><td>"+station[i].properties.vs30+"</td></tr>");
+        
+            document.writeln("</table>"+"<br/>");
+     
+     
+        
+        // ################## New Table ################### 
+     
+     
+        
+            document.writeln("<table>");
+       
+            document.writeln("<tr><td><b>Station Comp </b></td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td><b>PGA (%g)</b></td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td><b>PGV (cm/s) </b></td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td><b>PSA:   0.3 sec (%g) </b></td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td><b>1.0 sec (%g) </b></td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td><b>3.0 sec (%g)</b></td></tr>");
+  
+     for(j = 0;j<station[i].properties.channels.length;j++){
+     if (station[i].properties.channels[j] !== 'undefined') { 
+             // document.writeln("The station information you want to write")
+    
+     
+     
+            document.writeln("<tr><td><b>"+station[i].properties.channels[j].name+ "</b></td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td>"+station[i].properties.channels[j].amplitudes['0'].value+ "</td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td>"+station[i].properties.channels[j].amplitudes['1'].value+ "</td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td>"+station[i].properties.channels[j].amplitudes['2'].value+ "</td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td>"+station[i].properties.channels[j].amplitudes['3'].value+ "</td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td>"+station[i].properties.channels[j].amplitudes['4'].value+ "</td></tr>");
+         
+         
+               }
+   
+} 
+    
+           
+            //if(station[i].properties['channels']['name'] === 'undefined'){i=i+1}
+     
+     //if(station[i].properties.channels['0'].hasOwnProperty('name')){console.log(true);}
+     
+   //  if ("name" in station[i].properties.channels['1']) {
+  //console.log(true);
+//}
+     /*
+     
+            document.writeln("<tr><td><b>"+station[i].properties.channels['1'].name+ "</b></td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td>"+station[i].properties.channels['1'].amplitudes['0'].value+ "</td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td>"+station[i].properties.channels['1'].amplitudes['1'].value+ "</td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td>"+station[i].properties.channels['1'].amplitudes['2'].value+ "</td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td>"+station[i].properties.channels['1'].amplitudes['3'].value+ "</td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td>"+station[i].properties.channels['1'].amplitudes['4'].value+ "</td></tr>");
+                                                                    
+            
+            document.writeln("<tr><td><b>"+station[i].properties.channels['2'].name+ "</b></td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td>"+station[i].properties.channels['2'].amplitudes['0'].value+ "</td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td>"+station[i].properties.channels['2'].amplitudes['1'].value+ "</td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td>"+station[i].properties.channels['2'].amplitudes['2'].value+ "</td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td>"+station[i].properties.channels['2'].amplitudes['3'].value+ "</td><td>&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp</td><td>"+station[i].properties.channels['2'].amplitudes['4'].value+ "</td></tr>");     
+                   */                                               
+                                                                                             
+           document.writeln("</table>"+"<br/>"+"<br/>");
+        
+                                   
+                                                                                
+
+  }
+            
+          
+            
+            
+            
+   });
+
+
+</script>
+
+
+</body>
+</html>
+
