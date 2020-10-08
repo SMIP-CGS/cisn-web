@@ -81,15 +81,11 @@ function listProducts (eventid, productList) {
       for (var i = 0; i < productsNumber; i++) {
         if (productsList[i].cat === catList[k]) {
 
-          if (productList[i].name.slice(-4) === '.jpg' && catList[k]==='Peak Ground Motion Maps' && mapType===0) {
+          if (productList[i].name.slice(-5) === '.jpg' && catList[k]==='Peak Ground Motion Maps' && mapType===0) {
             myvar += '<tr data-href="#"><td colspan = "100%" bgcolor="#F6C564" style="text-align:left"><font size="2" color="#ffffff"><b> JPG maps </b></font></td></tr>';
             mapType = 1;
           }
-          if (productList[i].name.slice(-4) === '.pdf' && catList[k]==='Peak Ground Motion Maps' && mapType===1) {
-            myvar += '<tr data-href="#"><td colspan = "100%" bgcolor="#F6C564" style="text-align:left"><font size="2" color="#ffffff"><b> PDF maps </b></font></td></tr>';
-            mapType = 2;
-          }
-             if (productList[i].name.slice(-4) === '.png' && catList[k]==='Peak Ground Motion Maps' && mapType===1) {
+          if (productList[i].name.slice(-5) === '.pdf' && catList[k]==='Peak Ground Motion Maps' && mapType===1) {
             myvar += '<tr data-href="#"><td colspan = "100%" bgcolor="#F6C564" style="text-align:left"><font size="2" color="#ffffff"><b> PDF maps </b></font></td></tr>';
             mapType = 2;
           }
