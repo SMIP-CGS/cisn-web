@@ -13,6 +13,13 @@ function initTableClick() {
       window.location = $(this).data('href');
       return false;
     });
+    // For keyboard navigation
+    $('table tbody tr').keypress(function() {
+      if (event.which == 13){
+        window.location = $(this).data('href');
+      }
+      return false;
+    });
   });
 }
 
@@ -241,7 +248,7 @@ function listEvents () {
 
   for (var i = 0; i < showLength; i++) {
     myvar +=
-      '<tr data-href="' +
+      '<tr tabindex="0" data-href="' +
       viewerLink +
       showEvents[i].id +
       '">' +

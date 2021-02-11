@@ -3,6 +3,13 @@ $(document).ready(function() {
     window.location = $(this).data('href');
     return false;
   });
+// For keyboard navigation
+  $('table tbody tr').keypress(function() {
+    if (event.which == 13){
+      window.location = $(this).data('href');
+    }
+    return false;
+  });
 });
 
 function makeTable() {
@@ -11,13 +18,13 @@ function makeTable() {
     '<table class="table table-hover table-sm">' +
     '<thead>' +
     '<tr class="table-dark">' +
-    '<th scope="col";>Event id</th>' +
-    '<th scope="col";>Year</th>' +
-    '<th scope="col";>Month</th>' +
-    '<th scope="col";>Day</th>' +
-    '<th scope="col";>Time (HH:MM)</th>' +
-    '<th scope="col";>Location</th>' +
-    '<th scope="col";>Magnitude</th>' +
+    '<th style="color:black;" scope="col";>Event id</th>' +
+    '<th style="color:black;" scope="col";>Year</th>' +
+    '<th style="color:black;" scope="col";>Month</th>' +
+    '<th style="color:black;" scope="col";>Day</th>' +
+    '<th style="color:black;" scope="col";>Time (HH:MM)</th>' +
+    '<th style="color:black;" scope="col";>Location</th>' +
+    '<th style="color:black;" scope="col";>Magnitude</th>' +
     '</tr>' +
     '</thead>' +
     '<tbody>';
@@ -26,7 +33,7 @@ function makeTable() {
   if (objLength > 20) {
     for (var i = 0; i < 20; i++) {
       myvar +=
-        '<tr data-href="./viewLeaflet.html?eventid=' +
+        '<tr tabindex="0" data-href="./viewLeaflet.html?eventid=' +
         events[i].id +
         '">' +
         '<td>' +
@@ -55,7 +62,7 @@ function makeTable() {
   } else {
     for (var i = 0; i < objLength; i++) {
       myvar +=
-        '<tr data-href="./viewLeaflet.html?eventid=' +
+        '<tr tabindex="0" data-href="./viewLeaflet.html?eventid=' +
         events[i].id +
         '">' +
         '<td>' +
