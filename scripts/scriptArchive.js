@@ -231,13 +231,13 @@ function listEvents () {
     '<table class="table table-hover table-sm archive_table">' +
     '<thead>' +
     '<tr class="table-dark">' +
-    '<th scope="col";>Event id</th>' +
-    '<th scope="col";>Year</th>' +
-    '<th scope="col";>Month</th>' +
-    '<th scope="col";>Day</th>' +
-    '<th scope="col";>Time (HH:MM)</th>' +
-    '<th scope="col";>Location</th>' +
-    '<th scope="col";" width="10%">' +
+    '<th style="color:black;" scope="col";>Event id</th>' +
+    '<th style="color:black;" scope="col";>Year</th>' +
+    '<th style="color:black;" scope="col";>Month</th>' +
+    '<th style="color:black;" scope="col";>Day</th>' +
+    '<th style="color:black;" scope="col";>Time (HH:MM)</th>' +
+    '<th style="color:black;" scope="col";>Location</th>' +
+    '<th style="color:black;" scope="col";" width="10%">' +
     '<a href="#" onclick="magn_sort(2);" class="table_arrow_link">↓</a>' +
     'Magnitude' +
     '<a href="#" onclick="magn_sort(1);" class="table_arrow_link">↑</a>' +
