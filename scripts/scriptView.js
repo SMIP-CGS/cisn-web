@@ -48,7 +48,7 @@ function loadAnalysispage(){
 }
     
   function open_meta() {
-  window.location = './metaDataPage.html?eventid=' + eventid;
+  window.location = './MetaData.html?eventid=' + eventid;
 }  
     
 //'<object type="type/html" data="./data/' + eventid + '/station.html" ></object>'
