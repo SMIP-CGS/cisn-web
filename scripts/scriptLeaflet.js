@@ -87,10 +87,6 @@ function attr_div1(attr_collection, div_id) {
   }
 }
 
-
-
-
-
 // ##################################################
 // Show fault
 function faultSurface() {
@@ -104,76 +100,14 @@ function faultSurface() {
   function show_fault(fault) {
     // Show fault only if there is more than one point in rupture.json
     if (fault[0].geometry.coordinates[0].constructor === Array) { //check if the fault is an array or a scalar
-      var faultLayer = L.geoJSON(fault);
+      var faultLayer = L.geoJSON(fault);   
       control.addOverlay(faultLayer, 'Show fault');
     }
   }
 }
 
-// ##################################################
+// ################################################## 
 // Show stations
- /*function stationList() {
-  $.getJSON(
-    './data/' + eventid + '/stationlist.json',
-    function(json) {
-      var stations = json.features;
-      show_stations(stations);
-    }
-  );
-
-  function show_stations (stations) {
-    var stations_layer = L.geoJSON (stations, {
-      pointToLayer: function (feature, latlng) {
-        if (feature.properties.intensity < 5) {
-          var result = feature.properties.mmi_from_pgm.filter(obj => {
-            return obj.name === 'pga';
-          });
-          var stationColor = Math.round(result[0].value);
-        } else if (feature.properties.intensity >= 5) {
-          var result = feature.properties.mmi_from_pgm.filter(obj => {
-            return obj.name === 'pgv';
-          });
-          var stationColor = Math.round(result[0].value);
-
-        } else {
-          var stationWidth = 1;
-          var stationRadius = 3;
-        }
-        return new L.shapeMarker (latlng, {
-          fillColor: 'black',
-          color: intColors_USGS[stationColor] || 'blue',
-          shape: 'triangle',
-          radius: stationRadius || 5,
-          weight: stationWidth || 3
-        });
-      },
-      onEachFeature: function (feature, layer) {
-        layer.bindPopup(
-          'Station: ' +
-          feature.properties.code +
-          '<br/>Network: ' +
-          feature.properties.network +
-          '<br/>Distance: ' +
-          feature.properties.distance +
-          ' km <br/>Intensity: ' +
-          feature.properties.intensity +
-          '<br/>PGA: ' +
-          feature.properties.pga +
-          '<br/>PGV: ' +
-          feature.properties.pgv +
-          '<br/>Vs30: ' +
-          feature.properties.vs30 +
-          ' m/s'
-        );
-      }
-    });
-
-    control.addOverlay(stations_layer, 'Show stations');
-    stations_layer.addTo(mymap);
-  }
-}
-*/
-
 function stationList() {
   $.getJSON(
     './data/' + eventid + '/stationlist.json',
@@ -184,7 +118,6 @@ function stationList() {
   );
 
   function show_stations (stations) {
-    console.log(stations);
     var stations_layer = L.geoJSON (stations, {
       pointToLayer: function (feature, latlng) {
         if (feature.properties.station_type == 'seismic') {
@@ -238,10 +171,6 @@ function stationList() {
   }
 }
 
-
-
-
-
 // ##################################################
 // Show epicenter and write info in sidebar
 function event_info() {
@@ -269,8 +198,6 @@ function event_info() {
     attr_div(json.output.uncertainty, 'motions_content');
     attr_div(json.processing.ground_motion_modules, 'processing_content');
 
-
-
     show_epi(epi_lat, epi_lon, magnitude, depth);
   });
 
@@ -294,7 +221,6 @@ function event_info() {
 
 // ##################################################
 // Function call to show contours of PGA, PGV and PSAs on the map
-
 function show_contours(fileName, layerName) {
   $.getJSON(
     './data/' + eventid + '/' +fileName,
@@ -377,7 +303,7 @@ function show_intensity() {
         };
       }
     }).addTo(mymap);
-
+  
     control.addBaseLayer(intensity_layer, 'Intensity-contour');
   }
 }
@@ -409,7 +335,7 @@ function intensityOverlay() {
         overlayLayer = L.imageOverlay(imagePath, imageBounds,
           {opacity: 0.3}
         );
-
+ 
         control.addOverlay(overlayLayer, 'Intensity-overlay');
         // console.log(imageBounds)
       }
@@ -472,162 +398,63 @@ L.control
   })
   .addTo(mymap);
 
-/*
-
-var baseLayers = {
-
-};
-
-var overlays = {
-    "fault_layer": layer1,
-    "fault_layer1": layer2
-};
-L.control.layers(baseLayers, overlays,{collapsed:false}).addTo(map);
-
-
-*/
-
-
-
-
 
 // #####################################################
 //  Map used for background
-
-
 var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
   attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
 }).addTo(mymap);
 
 
-
-
-function map4() {
-var fault_layer = L.esri.tiledMapLayer({
-  url: 'https://earthquake.usgs.gov/arcgis/rest/services/haz/hazfaults2014/MapServer/',
-   //url: "https://earthquake.usgs.gov/arcgis/rest/services/haz/Qfaults/MapServer/",
-
-  maxZoom: 15
-})//.addTo(mymap);
-         
-control.addOverlay(fault_layer,'US Fault');
-
-
-}
-
-
-function map5() {
-//var fault_layer1 = L.esri.featureLayer({
- // url: 'https://earthquake.usgs.gov/arcgis/rest/services/haz/hazfaults2014/MapServer/21',
-   //url: 'https://earthquake.usgs.gov/arcgis/rest/services/haz/Qfaults/MapServer/0',
+// Replaced with NSHM23 Fault Sections Database Faults
+//function map4() {
+//var fault_layer = L.esri.tiledMapLayer({
+//  url: 'https://earthquake.usgs.gov/arcgis/rest/services/haz/hazfaults2014/MapServer/',
+//   //url: "https://earthquake.usgs.gov/arcgis/rest/services/haz/Qfaults/MapServer/",
+//
 //  maxZoom: 15
-//}).addTo(mymap);
-    
-  
-   var fault_layer1 = L.esri.featureLayer({
-  	url: 'https://earthquake.usgs.gov/arcgis/rest/services/haz/Qfaults/MapServer/21'})//.addTo(mymap);
-   //fault_layer1.collapsed = true;
+//})//.addTo(mymap);
+//         
+//control.addOverlay(fault_layer,'US Fault');
+//}
 
-    
- //fault_layer1.Visible=false;
-    //fault_layer1.set("checked", false)
-   // fault_layer1.setVisibility(false);
-    
+// #########################################################
+// Function call to add NSHM23 Fault Sections Database
+function show_updated_faults() {
+  $.getJSON(
+    './json/NSHM23_FSD_v2.geojson',
+    function(json) {
+      var faults = json.features;
+      plot_int(faults);
+    }
+  );
 
-    
-    
-control.addOverlay(fault_layer1, 'Q fault');
-    
-    
-    
-    
-    
-
+  function plot_int (faults) {
+    var faults_layer = L.geoJSON(faults, {
+      onEachFeature: function (feature, layer) {
+        var popupContent = 'Fault: ' + feature.properties.FaultName;
+        layer.bindPopup(popupContent);
+      },
+      style: function(feature) {
+        return {
+          color: "#000000",
+          weight: 2.5,
+          dashArray: lineStyle[1]
+        };
+      }
+    }) 
+    control.addOverlay(faults_layer, 'Faults (NSHM23)');
+  }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-function map4() {
-var fault_layer = L.esri.imageMapLayer({
-  url: 'https://earthquake.usgs.gov/arcgis/rest/services/haz/hazfaults2014/MapServer/',
-   //url: "https://earthquake.usgs.gov/arcgis/rest/services/haz/Qfaults/MapServer/",
-    
-  maxZoom: 15
-}).addTo(mymap);
-control.addOverlay(fault_layer, 'US Fault');
-
-
-}*/
-
-
-
-
-
-/*
-
-function map6() {
-//var fault_layer1 = L.esri.featureLayer({
- // url: 'https://earthquake.usgs.gov/arcgis/rest/services/haz/hazfaults2014/MapServer/21',
-   //url: 'https://earthquake.usgs.gov/arcgis/rest/services/haz/Qfaults/MapServer/0',
-//  maxZoom: 15
-//}).addTo(mymap);
-    
-    
-   var fault_layer2 = L.esri.featureLayer({
-  	url: 'https://earthquake.usgs.gov/arcgis/rest/services/haz/Qfaults/MapServer/21'}).addTo(mymap);
-    
-control.addOverlay(fault_layer2, 'Fault  Areas');
-
+// #########################################################
+// For adding QFault overlay to map
+function map5() { 
+  var fault_layer1= L.esri.featureLayer({
+  	url: 'https://earthquake.usgs.gov/arcgis/rest/services/haz/Qfaults/MapServer/21'})
+  control.addOverlay(fault_layer1, 'Q fault');    
 }
-
-*/
-
-/*
-
-function map5() {
-//var fault_layer = L.esri.featureLayer({
- // url: 'https://earthquake.usgs.gov/arcgis/rest/services/haz/hazfaults2014/MapServer/',
-  // url: "https://earthquake.usgs.gov/arcgis/rest/services/haz/Qfaults/MapServer/",
-    
- 
-	L.esri.featureLayer({
-  	url: 'https://earthquake.usgs.gov/arcgis/rest/services/haz/Qfaults/MapServer/0'}).addTo(mymap);
-
-
-	L.esri.featureLayer({
-  	url: 'https://earthquake.usgs.gov/arcgis/rest/services/haz/Qfaults/MapServer/21'}).addTo(mymap);
-
-	L.esri.featureLayer({
-  	url: 'https://earthquake.usgs.gov/arcgis/rest/services/haz/Qfaults/MapServer/22'}).addTo(mymap);
-    
-  /*  
-    
-  maxZoom: 15 
-
-  var fault_Layer1 = new ArcGISImageServiceLayer("https://earthquake.usgs.gov/arcgis/rest/services/haz/Qfaults/MapServer/", {
-          
-          opacity: 0.75
-        }).addTo(mymap);
-control.addOverlay(fault_layer1, 'Q1faults');
-        //map.addLayer(fault_Layer1, 'Q1faults');
-      
-}
-  */
-   
- 
-
 
 
 event_info();
@@ -637,14 +464,18 @@ show_contours('cont_pgv.json', 'PGV');
 show_contours('cont_psa0p3.json', 'PSA 0.3 s');
 show_contours('cont_psa1p0.json', 'PSA 1.0 s');
 show_contours('cont_psa3p0.json', 'PSA 3.0 s');
-stationList();
 
-
-
+show_updated_faults();
+// Because addOverlay isn't called until feature is constructed, NSHM23 faults 
+// were appearing as the bottom selection even though it was called first.
+setTimeout(() => { map5(); }, 200);
+setTimeout(() => {stationList();}, 200);
 faultSurface();
-intensityOverlay();
-legend_box();
-map4();
-map5();
+setTimeout(() => {intensityOverlay();}, 200);
 
+
+
+
+
+legend_box();
 var sidebar = L.control.sidebar('sidebar').addTo(mymap);
