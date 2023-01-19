@@ -420,6 +420,7 @@ L.control
 event_info();
 show_intensity(control, true);
 intensityOverlay(control);
+show_updated_faults(control)
 show_contours('cont_pga.json', 'PGA', control, false);
 show_contours('cont_pgv.json', 'PGV', control, false);
 show_contours('cont_psa0p3.json', 'PSA 0.3 s', control, false);
@@ -433,6 +434,7 @@ legend_box();
 
 show_intensity(control2, false);
 intensityOverlay(control2);
+show_updated_faults(control2)
 show_contours('cont_pga.json', 'PGA', control2, true);
 show_contours('cont_pgv.json', 'PGV', control2, false);
 show_contours('cont_psa0p3.json', 'PSA 0.3 s', control2, false);
@@ -444,3 +446,34 @@ faultSurface(control2);
 //map7();
 
 var sidebar = L.control.sidebar('sidebar').addTo(map1);
+
+
+// #########################################################
+// Function call to NSHM23 Fault Sections Database
+function show_updated_faults(controlName) {
+  $.getJSON(
+    './json/NSHM23_FSD_v2.geojson',
+    function(json) {
+      var faults = json.features;
+      plot_int(faults);
+    }
+  );
+
+  function plot_int (faults) {
+    var faults_layer = L.geoJSON(faults, {
+      onEachFeature: function (feature, layer) {
+        var popupContent = 'Fault: ' + feature.properties.FaultName;
+        layer.bindPopup(popupContent);
+      },
+      style: function(feature) {
+        return {
+          color: "#000000",
+          weight: 2.5,
+          dashArray: lineStyle[1]
+        };
+      }
+    })
+
+    controlName.addOverlay(faults_layer, 'Faults (NSHM23)');
+  }
+}
